@@ -447,20 +447,90 @@ public class CoroutinesExample : MonoBehaviour
     }
     
     
-    IEnumerator MyCoroutine (Transform target)
+    IEnumerator MyCoroutine (Transform target) // IEnumerator를 사
     {
         while(Vector3.Distance(transform.position, target.position) > 0.05f)
         {
             transform.position = Vector3.Lerp(transform.position, target.position, smoothing * Time.deltaTime);
             
-            yield return null;
+            yield return null;  // null을 리턴함으로써 무한루프
         }
         
         print("Reached the target.");
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f); // 몇초마다 시작할지
         
         print("MyCoroutine is now finished.");
     }
 }
+```
+
+프로퍼티와의 사용
+
+```c#
+using UnityEngine;
+using System.Collections;
+
+public class PropertiesAndCoroutines : MonoBehaviour
+{
+    public float smoothing = 7f;
+    public Vector3 Target
+    {
+        get { return target; }
+        set
+        {
+            target = value;
+            
+            StopCoroutine("Movement");
+            StartCoroutine("Movement", target);
+        }
+    }
+    
+    
+    private Vector3 target;
+
+    
+    IEnumerator Movement (Vector3 target)
+    {
+        while(Vector3.Distance(transform.position, target) > 0.05f)
+        {
+            transform.position = Vector3.Lerp(transform.position, target, smoothing * Time.deltaTime);
+            
+            yield return null;
+        }
+    }
+}
+```
+
+```c#
+using UnityEngine;
+using System.Collections;
+
+public class ClickSetPosition : MonoBehaviour
+{
+    public PropertiesAndCoroutines coroutineScript;
+    
+    void OnMouseDown ()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        
+        Physics.Raycast(ray, out hit);
+        
+        if(hit.collider.gameObject == gameObject)
+        {
+            Vector3 newTarget = hit.point + new Vector3(0, 0.5f, 0);
+            coroutineScript.Target = newTarget;
+        }
+    }
+}
+
+```
+
+### Quaternions
+
+회전과 관련됨 , x,y,z,w 를 파라미터로 받음
+
+```c#
+
 ```
