@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpBasic
+namespace CSharpBasic 
 {
     public class ClassExample
     {
@@ -17,10 +17,11 @@ namespace CSharpBasic
             name = string.Empty;
             age = -1;
         }
-
+        
         // 속성
         public string Name
         {
+        
             get { return this.name; }
             set 
             {
