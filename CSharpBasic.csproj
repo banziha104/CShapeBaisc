@@ -60,6 +60,7 @@
     <Content Include="Markdown\Val.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Markdown\Projects\Shooting" />
     <Folder Include="UnityProjects\RAB" />
     <Folder Include="UnityScript" />
   </ItemGroup>
