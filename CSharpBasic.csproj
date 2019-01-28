@@ -56,6 +56,7 @@
     <Content Include="Markdown\Unity\010_Invoke.md" />
     <Content Include="Markdown\Unity\011_Mouse.md" />
     <Content Include="Markdown\Unity\012_TranlateAndRotate.md" />
+    <Content Include="Markdown\Unity\013_CAMERA.md" />
     <Content Include="Markdown\Unity\013_Vector.md" />
     <Content Include="Markdown\Val.md" />
   </ItemGroup>
